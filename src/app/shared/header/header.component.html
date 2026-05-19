@@ -1,130 +1,22 @@
-
 <nav class="navbar" role="navigation">
-
   <div class="nav-inner">
+
     <a class="nav-logo" routerLink="/">
-      <div class="logo-icon">
-        CT
-      </div>
-      <span class="logo-text">
-        CafeTec
-      </span>
-      <span class="logo-badge">
-        APP
-      </span>
+      <div class="logo-icon">CT</div>
+      <span class="logo-text">CafeTec</span>
+      <span class="logo-badge">APP</span>
     </a>
-    <ul class="nav-links">
-      <li>
-        <a
-          routerLink="/home"
-          routerLinkActive="active"
-          [routerLinkActiveOptions]="{ exact: true }">
-          <span class="nav-icon">⊞</span>
-          Dashboard
-        </a>
-      </li>
-      <li>
-        <a
-          routerLink="/productos"
-          routerLinkActive="active">
-          <span class="nav-icon">◈</span>
-          Productos
-        </a>
-      </li>
-      <li>
-        <a
-          routerLink="/categorias"
-          routerLinkActive="active">
-          <span class="nav-icon">◉</span>
-          Categorías
-        </a>
-      </li>
-      <li>
-        <a
-          routerLink="/marcas"
-          routerLinkActive="active">
-          <span class="nav-icon">◆</span>
-          Marcas
-        </a>
-      </li>
-      <li>
-        <a
-          routerLink="/usuarios"
-          routerLinkActive="active">
-          <span class="nav-icon">◎</span>
-          Usuarios
-        </a>
-      </li>
-    </ul>
+
     <div class="nav-right">
       <div class="nav-user">
-        <div class="avatar">
-          {{ iniciales() }}
-        </div>
+        <div class="avatar">{{ iniciales() }}</div>
         <div class="user-info">
-          <span class="user-name">
-            {{ nombreCompleto() }}
-          </span>
-          <span class="user-role">
-            {{ rol() }}
-          </span>
+          <span class="user-name">{{ nombreCompleto() }}</span>
+          <span class="user-role">{{ rol() }}</span>
         </div>
       </div>
-      <button
-        class="btn-logout"
-        (click)="logout()">
-        ⏻ Salir
-      </button>
+      <button class="btn-logout" (click)="logout()">⏻ Salir</button>
     </div>
-    <button
-      class="burger"
-      [class.open]="menuOpen()"
-      [attr.aria-expanded]="menuOpen()"
-      aria-label="Abrir menú"
-      (click)="toggleMenu()">
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
-      <span class="burger-line"></span>
-    </button>
-  </div>
-  <div
-    class="mobile-menu"
-    [class.open]="menuOpen()">
-    <a
-      routerLink="/home"
-      routerLinkActive="active"
-      [routerLinkActiveOptions]="{ exact: true }"
-      (click)="closeMenu()">
-      ⊞ Dashboard
-    </a>
-    <a
-      routerLink="/productos"
-      routerLinkActive="active"
-      (click)="closeMenu()">
-      ◈ Productos
-    </a>
-    <a
-      routerLink="/categorias"
-      routerLinkActive="active"
-      (click)="closeMenu()">
-      ◉ Categorías
-    </a>
-    <a
-      routerLink="/marcas"
-      routerLinkActive="active"
-      (click)="closeMenu()">
-      ◆ Marcas
-    </a>
-    <a
-      routerLink="/usuarios"
-      routerLinkActive="active"
-      (click)="closeMenu()">
-      ◎ Usuarios
-    </a>
-    <a
-      class="mobile-logout"
-      (click)="logout()">
-      ⏻ Cerrar sesión
-    </a>
+
   </div>
 </nav>

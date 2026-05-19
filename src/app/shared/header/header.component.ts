@@ -17,7 +17,7 @@ import {
 import {
   Router,
   RouterLink,
-  RouterLinkActive
+  //RouterLinkActive
 } from '@angular/router';
 
 @Component({
@@ -26,7 +26,7 @@ import {
   imports: [
     CommonModule,
     RouterLink,
-    RouterLinkActive
+    //RouterLinkActive
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']

@@ -1,0 +1,197 @@
+:host {
+  display: block;
+  position: relative;
+  z-index: 100;
+}
+
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background: rgba(20, 20, 40, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-right: 1px solid rgba(0, 255, 255, 0.18);
+  box-shadow:
+    4px 0 30px rgba(0, 0, 0, 0.35),
+    inset 1px 0 0 rgba(138, 43, 226, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  flex-shrink: 0;
+  position: relative;
+}
+
+/* Gradiente decorativo igual al navbar */
+.sidebar::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 255, 0.04),
+    rgba(138, 43, 226, 0.04),
+    rgba(0, 255, 255, 0.02)
+  );
+  pointer-events: none;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+/* ── Botón colapsar ── */
+.collapse-btn {
+  background: transparent;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  margin: 16px auto 8px;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  flex-shrink: 0;
+  transition: background 0.25s, border-color 0.25s;
+}
+
+.collapse-btn:hover {
+  background: rgba(0, 255, 255, 0.08);
+  border-color: rgba(0, 255, 255, 0.45);
+}
+
+.collapse-line {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: #00f5ff;
+  border-radius: 999px;
+  transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease;
+}
+
+/* Animación: colapsar → flecha derecha */
+.sidebar.collapsed .collapse-line:nth-child(1) {
+  transform: rotate(35deg) translate(2px, 3px);
+  width: 10px;
+}
+.sidebar.collapsed .collapse-line:nth-child(3) {
+  transform: rotate(-35deg) translate(2px, -3px);
+  width: 10px;
+}
+
+/* ── Navegación ── */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 8px 10px;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar-nav::-webkit-scrollbar {
+  width: 3px;
+}
+.sidebar-nav::-webkit-scrollbar-track {
+  background: transparent;
+}
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 255, 0.2);
+  border-radius: 999px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: rgba(180, 180, 255, 0.7);
+  font-size: 13.5px;
+  font-family: 'Segoe UI', sans-serif;
+  border: 1px solid transparent;
+  transition: background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.nav-item:hover {
+  color: #00f5ff;
+  background: rgba(0, 255, 255, 0.08);
+  border-color: rgba(0, 255, 255, 0.2);
+}
+
+.nav-item.active {
+  color: #00f5ff;
+  background: rgba(0, 255, 255, 0.1);
+  border-color: rgba(0, 255, 255, 0.28);
+  font-weight: 600;
+  position: relative;
+}
+
+/* Línea izquierda en activo */
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  border-radius: 0 999px 999px 0;
+  background: linear-gradient(180deg, #00f5ff, #8a2be2);
+}
+
+.nav-icon {
+  font-size: 15px;
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+  filter: drop-shadow(0 0 4px rgba(0, 245, 255, 0));
+  transition: filter 0.25s;
+}
+
+.nav-item:hover .nav-icon,
+.nav-item.active .nav-icon {
+  filter: drop-shadow(0 0 5px rgba(0, 245, 255, 0.7));
+}
+
+.nav-label {
+  transition: opacity 0.2s ease, width 0.2s ease;
+  opacity: 1;
+}
+
+.sidebar.collapsed .nav-label {
+  opacity: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+/* ── Footer ── */
+.sidebar-footer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-top: 1px solid rgba(0, 255, 255, 0.1);
+  color: rgba(0, 255, 255, 0.3);
+  font-size: 11px;
+  font-family: 'Segoe UI', sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.sidebar.collapsed .sidebar-footer .nav-label {
+  opacity: 0;
+  width: 0;
+}
+
+.nav-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
