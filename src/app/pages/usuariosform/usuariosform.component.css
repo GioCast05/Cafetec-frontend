@@ -1,0 +1,172 @@
+/* ── Capa de Fondo del Modal ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* ── Contenedor del Formulario ── */
+.modal-container {
+  position: relative;
+  width: 420px;
+  background: rgba(20, 20, 40, 0.95);
+  border: 1px solid rgba(0, 255, 255, 0.28);
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 0 40px rgba(0, 255, 255, 0.15),
+              inset 0 0 20px rgba(138, 43, 226, 0.08);
+  animation: fadeIn 0.2s ease;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.modal-container::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, #00ffff, #8a2be2, #00ffff);
+  border-radius: 18px;
+  z-index: -1;
+  filter: blur(10px);
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+h2 {
+  margin: 0 0 24px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #00f5ff, #c084fc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+p {
+  color: rgba(220, 220, 255, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+/* ── Campos del Formulario ── */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 18px;
+}
+
+label {
+  margin-bottom: 7px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgba(0, 255, 255, 0.65);
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select,
+.form-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 14px;
+  background: rgba(10, 10, 30, 0.8);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 0.95rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus, select:focus, .form-input:focus {
+  outline: none;
+  border-color: #00ffff;
+  box-shadow: 0 0 14px rgba(0, 255, 255, 0.35);
+  background: rgba(15, 15, 40, 0.9);
+}
+
+select option {
+  background: #0f0c29;
+  color: #fff;
+}
+
+.error, .error-text {
+  color: #ff6b6b;
+  margin-top: 5px;
+  font-size: 0.75rem;
+}
+
+/* ── Bloque de Botones del Modal ── */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border-radius: 9px;
+  border: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.btn-cancel {
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(180, 180, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.btn-cancel:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.btn-save {
+  background: linear-gradient(90deg, #00f5ff, #8a2be2);
+  color: #0f0c29;
+  box-shadow: 0 0 18px rgba(0, 245, 255, 0.3);
+}
+
+.btn-save:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 0 28px rgba(0, 245, 255, 0.55);
+}
+
+.btn-save:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.btn-action.delete {
+  background: rgba(255, 80, 80, 0.15);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 80, 80, 0.4);
+  box-shadow: 0 0 14px rgba(255, 80, 80, 0.1);
+}
+
+.btn-action.delete:hover {
+  background: rgba(255, 80, 80, 0.3);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(255, 80, 80, 0.4);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}

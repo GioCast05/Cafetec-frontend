@@ -110,7 +110,16 @@ export class PuntoVentaComponent implements OnInit {
     return this.articulosCar.reduce((total, item) => total + (item.producto.precioUnitario * item.cantidad), 0);
   }
 
-  formatoPrecio(precio: number): string {
-    return `$${precio.toFixed(2)}`;
+  formatoPrecio(precio: any): string {
+  // 1. Si el precio no existe, es null o undefined, devolvemos '0.00' para evitar que truene
+  if (precio === null || precio === undefined || isNaN(precio)) {
+    return '0.00';
   }
+
+  // 2. Convertimos explícitamente a número usando Number() o el operador unario '+'
+  const precioNumerico = Number(precio);
+
+  // 3. Ahora sí podemos usar toFixed con total seguridad
+  return precioNumerico.toFixed(2);
+}
 }

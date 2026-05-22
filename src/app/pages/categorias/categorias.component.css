@@ -1,16 +1,18 @@
-/* ── Contenedor principal ── */
+/* ── Contenedor de la Tabla con Efecto Glass ── */
 .container {
   background: rgba(20, 20, 40, 0.75);
   backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   border: 1px solid rgba(0, 255, 255, 0.18);
   border-radius: 16px;
   padding: 24px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.35);
   font-family: 'Segoe UI', sans-serif;
-  min-height: 80vh;
+  margin: 20px auto;
+  max-width: 1200px;
 }
 
-/* ── Header ── */
+/* ── Encabezado de la Sección ── */
 .header-section {
   display: flex;
   align-items: center;
@@ -19,14 +21,17 @@
 }
 
 .header-section h1 {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 700;
   background: linear-gradient(90deg, #00f5ff, #c084fc);
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin: 0;
+  letter-spacing: 0.5px;
 }
 
+/* ── Botón Agregar Nueva Categoría ── */
 .btn-add {
   display: flex;
   align-items: center;
@@ -50,12 +55,9 @@
   box-shadow: 0 0 28px rgba(0, 245, 255, 0.55);
 }
 
-/* ── Tabla ── */
+/* ── Estructura de la Tabla Estilizada ── */
 .table-container {
-  background: rgba(15, 15, 35, 0.6);
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid rgba(0, 255, 255, 0.1);
+  overflow-x: auto;
 }
 
 table {
@@ -82,6 +84,7 @@ td {
   color: rgba(220, 220, 255, 0.85);
   font-size: 0.9rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  vertical-align: middle;
 }
 
 tbody tr {
@@ -96,9 +99,8 @@ tbody tr:last-child td {
   border-bottom: none;
 }
 
-/* ── Botones de acción ── */
-.btn-edit,
-.btn-delete {
+/* ── Botones de Acción (Editar / Eliminar) ── */
+.btn-edit, .btn-delete {
   padding: 6px 14px;
   border: none;
   border-radius: 8px;

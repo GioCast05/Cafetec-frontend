@@ -1,14 +1,17 @@
+/* ── Capa de Fondo del Modal ── */
 .modal-overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
+/* ── Contenedor del Formulario ── */
 .modal-container {
   position: relative;
   width: 420px;
@@ -22,7 +25,6 @@
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Glow exterior */
 .modal-container::before {
   content: '';
   position: absolute;
@@ -32,18 +34,27 @@
   z-index: -1;
   filter: blur(10px);
   opacity: 0.18;
+  pointer-events: none;
 }
 
-.modal-container h2 {
+h2 {
   margin: 0 0 24px;
   font-size: 1.1rem;
   font-weight: 700;
   background: linear-gradient(90deg, #00f5ff, #c084fc);
   background-clip: text;
+  -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  text-align: center;
 }
 
+p {
+  color: rgba(220, 220, 255, 0.85);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+
+/* ── Campos del Formulario ── */
 .form-group {
   display: flex;
   flex-direction: column;
@@ -59,7 +70,14 @@ label {
   color: rgba(0, 255, 255, 0.65);
 }
 
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select,
 .form-input {
+  width: 100%;
+  box-sizing: border-box;
   padding: 11px 14px;
   background: rgba(10, 10, 30, 0.8);
   border: 1px solid rgba(0, 255, 255, 0.3);
@@ -69,23 +87,25 @@ label {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.form-input:focus {
+input:focus, select:focus, .form-input:focus {
   outline: none;
   border-color: #00ffff;
   box-shadow: 0 0 14px rgba(0, 255, 255, 0.35);
   background: rgba(15, 15, 40, 0.9);
 }
 
-.form-input::placeholder {
-  color: rgba(180, 180, 255, 0.3);
+select option {
+  background: #0f0c29;
+  color: #fff;
 }
 
-.error {
+.error, .error-text {
   color: #ff6b6b;
   margin-top: 5px;
   font-size: 0.75rem;
 }
 
+/* ── Bloque de Botones del Modal ── */
 .actions {
   display: flex;
   justify-content: flex-end;
@@ -132,9 +152,18 @@ label {
   cursor: not-allowed;
 }
 
-.delete {
-  background: linear-gradient(90deg, #ff4d4d, #c62828) !important;
-  color: white !important;
+.btn-action.delete {
+  background: rgba(255, 80, 80, 0.15);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 80, 80, 0.4);
+  box-shadow: 0 0 14px rgba(255, 80, 80, 0.1);
+}
+
+.btn-action.delete:hover {
+  background: rgba(255, 80, 80, 0.3);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(255, 80, 80, 0.4);
 }
 
 @keyframes fadeIn {

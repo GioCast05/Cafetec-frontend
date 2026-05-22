@@ -22,9 +22,10 @@ export class UsuariosformComponent {
     this.form = this.fb.group({
       idUsuario: [null],
       nombre: ['', [Validators.required]],
-      correo: ['', [Validators.required, Validators.email]],
-      password: [''],
-      rol: ['', [Validators.required]]
+      apellidoP: ['', [Validators.required]],
+      apellidoM: ['', [Validators.required]],
+      username: ['', [Validators.required]],
+      password: ['']
     });
   }
 
