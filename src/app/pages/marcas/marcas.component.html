@@ -1,1 +1,32 @@
-<p>marcas works!</p>
+<app-marcasform
+    [config]="modalConfig"
+    (close)="cerrarModal()"
+    (save)="accionMarca($event)">
+</app-marcasform>
+
+<div class="card-table">
+    <div class="card-table-header">
+        <h2>Marcas</h2>
+        <button class="btn-add" (click)="nuevaMarca()">
+            + nueva marca
+        </button>
+    </div>
+
+    <table class="custom-table">
+        <thead>
+            <tr>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let marca of listaMarcas">
+                <td>{{marca.descripcion}}</td>
+                <td>
+                    <button class="btn-action edit" (click)="editarMarca(marca)">Editar</button>
+                    <button class="btn-action delete" (click)="eliminarMarca(marca)">Eliminar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

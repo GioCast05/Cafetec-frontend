@@ -10,7 +10,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./sidebar.component.css'],
 })
 export class SidebarComponent {
-  isCollapsed = signal(false);
+  // Señal que controla si el menú se encoge o se expande
+  public isCollapsed = signal(false);
 
   toggleSidebar(): void {
     this.isCollapsed.update(v => !v);

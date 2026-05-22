@@ -1,0 +1,100 @@
+<div class="body-split">
+    <div class="products-panel">
+        <div class="products-header">
+            <div>
+                <h1 class="section-title">Punto de venta</h1>
+                <p class="section-sub">Selecciona los productos para tu venta</p>
+            </div>
+        </div>
+
+        <div class="categories-bar">
+            <button 
+                class="cat-btn" 
+                [class.active]="selectCategoria === 'todos'"
+                (click)="seleccionarCategoria('todos')">
+                Todos
+            </button>
+            <button 
+                *ngFor="let categoria of listaCategorias"
+                class="cat-btn"
+                [class.active]="selectCategoria === categoria.descripcion"
+                (click)="seleccionarCategoria(categoria.descripcion)">
+                {{categoria.descripcion}}
+            </button>
+        </div>
+
+        <div class="product-grid">
+            <div 
+                class="product-card" 
+                *ngFor="let product of listaProductos"
+                (click)="agregarAlCarrito(product)">
+                
+                <div class="product-img-wrap">
+                    <img [src]="product.image || 'assets/no-image.png'" [alt]="product.descripcion" class="product-img" />
+                </div>
+
+                <div class="product-info">
+                    <p class="product-name">{{product.descripcion}}</p>
+                    <p class="product-price">{{formatoPrecio(product.precioUnitario)}}</p>
+                </div>
+            </div>
+
+            <div class="empty-state" *ngIf="listaProductos.length === 0">
+                <p>No se encontraron productos disponibles.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-panel">
+        <div class="cart-header">
+            <div>
+                <span class="cart-title">Carrito de Compras</span>
+                <div class="cart-number">{{articulosCar.length}} artículos</div>
+            </div>
+            <button *ngIf="articulosCar.length > 0" class="btn-cancel-sale" (click)="vaciarCarrito()">
+                Vaciar carrito
+            </button>
+        </div>
+
+        <div class="cart-items">
+            <div class="cart-empty" *ngIf="articulosCar.length === 0">
+                <div>El carrito está vacío</div>
+                <div class="cart-empty-sub">Haz clic en un producto para agregarlo</div>
+            </div>
+
+            <div class="cart-item" *ngFor="let item of articulosCar">
+                <div class="item-qty-col">
+                    <button class="qty-btn" (click)="actualizarCantidad(item, -1)">-</button>
+                    <span class="item-qty">{{item.cantidad}}</span>
+                    <button class="qty-btn" (click)="actualizarCantidad(item, 1)">+</button>
+                </div>
+                
+                <div class="item-detail">
+                    <div class="item-name">{{item.producto.descripcion}}</div>
+                    <div class="item-sub">{{formatoPrecio(item.producto.precioUnitario)}} c/u</div>
+                </div>
+
+                <div class="item-price-col">
+                    <span class="item-price">{{formatoPrecio(item.producto.precioUnitario * item.cantidad)}}</span>
+                    <button class="item-more" (click)="eliminarItemCarrito(item)">✕</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="totals" *ngIf="articulosCar.length > 0">
+            <div class="total-row muted">
+                <span>Subtotal</span>
+                <span>{{formatoPrecio(obtenerTotal())}}</span>
+            </div>
+            <div class="total-row grand-total">
+                <span>Total</span>
+                <span>{{formatoPrecio(obtenerTotal())}}</span>
+            </div>
+        </div>
+
+        <div class="cart-secondary-actions" *ngIf="articulosCar.length > 0">
+            <button class="btn-clear" (click)="vaciarCarrito()">Cancelar</button>
+            <button class="btn-save" style="background: #2C1A0E; color: white; border: none;">Cobrar</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="header-section">
+        <h1>Categorías</h1>
+        <button class="btn-add" (click)="nuevaCategoria()">+ NUEVA CATEGORÍA</button>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>DESCRIPCIÓN</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cat of listaCategorias">
+                    <td>{{cat.descripcion}}</td>
+                    <td>
+                        <button class="btn-edit" (click)="editarCategoria(cat)">Editar</button>
+                        <button class="btn-delete" (click)="eliminarCategoria(cat)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<app-categoriasform [config]="modalConfig" (close)="cerrarModal()" (save)="accionCategoria($event)"></app-categoriasform>

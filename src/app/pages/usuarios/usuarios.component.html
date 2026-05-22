@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="header-section">
+        <h1>Usuarios</h1>
+        <button class="btn-add" (click)="nuevoUsuario()">+ NUEVO USUARIO</button>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>NOMBRE</th>
+                    <th>CORREO</th>
+                    <th>ROL</th>
+                    <th>ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of listaUsuarios">
+                    <td>{{user.nombre}}</td>
+                    <td>{{user.correo}}</td>
+                    <td>{{user.rol}}</td>
+                    <td>
+                        <button class="btn-edit" (click)="editarUsuario(user)">Editar</button>
+                        <button class="btn-delete" (click)="eliminarUsuario(user)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<app-usuariosform [config]="modalConfig" (close)="cerrarModal()" (save)="accionUsuario($event)"></app-usuariosform>

@@ -1,0 +1,43 @@
+<div *ngIf="config.visible" class="modal-overlay">
+    <div class="modal-container">
+        <h2>{{config.titulo}}</h2>
+
+        <form [formGroup]="form" *ngIf="config.modo !== 'eliminar'">
+            <div class="form-group">
+                <label for="descripcion">Descripción</label>
+                <input 
+                    id="descripcion"
+                    type="text"
+                    formControlName="descripcion"
+                    placeholder="Ingrese la descripción"
+                    class="form-input"
+                />
+
+                <small class="error" *ngIf="form.controls['descripcion'].hasError('required') && form.controls['descripcion'].touched">
+                    La descripción es requerida.
+                </small>
+                
+                <small class="error" *ngIf="form.controls['descripcion'].hasError('minlength') && form.controls['descripcion'].touched">
+                    La descripción debe tener al menos 3 caracteres.
+                </small>    
+            </div>
+        </form>
+
+        <div *ngIf="config.modo === 'eliminar'" style="margin-bottom: 20px; color: rgba(220, 220, 255, 0.85);">
+            <p>¿Estás seguro de que deseas eliminar la marca <strong>{{config.marca?.descripcion}}</strong>?</p>
+            <p style="color: #ff6b6b; font-size: 0.8rem; margin-top: 5px;">⚠️ Esta acción no se puede deshacer.</p>
+        </div>
+        
+        <div class="actions">
+            <button type="button" class="btn btn-cancel" (click)="cancelar()">Cancelar</button>
+            <button 
+                type="submit" 
+                class="btn" 
+                [ngClass]="config.modo === 'eliminar' ? 'btn-action delete' : 'btn-save'"
+                [disabled]="config.modo !== 'eliminar' && form.invalid"
+                (click)="guardar()">
+                {{config.modo === 'crear' ? 'Crear' : config.modo === 'editar' ? 'Actualizar' : 'Eliminar'}}
+            </button>
+        </div>
+    </div>
+</div>
